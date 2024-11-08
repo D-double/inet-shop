@@ -7,9 +7,9 @@ import MenuProduct from "../pages/MenuProduct";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import { Paths } from "./paths";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, createHashRouter } from "react-router-dom";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
     {
         path: Paths.menu,
         element: <PrivateRoute/>,
