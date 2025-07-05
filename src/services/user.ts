@@ -1,50 +1,50 @@
-import { ILogin, IProfileAvatar, IProfileInfo, IRegister } from "../types";
-import api from "./api";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import api from './api'
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { IRegister, ILogin, IProfileInfo, IProfileAvatar } from '../types';
 
-export const useRegisterMutation = ()=>{
-    return useMutation({
-        mutationFn: (useData: IRegister)=> api.post('/auth/register', useData)
-    })
-}
+export const useRegisterMutation = () => {
+  return useMutation({
+    mutationFn: (userData: IRegister) => api.post('/auth/register', userData)
+  });
+};
 
-export const userLoginMutation = ()=>{
-    return useMutation({
-        mutationFn: (useData: ILogin)=> api.post('/auth/login', useData),
-        onSuccess: ( {data} )=>{
-            if(data && data.access) {
-                localStorage.setItem('access_token', data.access);
-                localStorage.setItem('refresh_token', data.refresh);
-            }
-            console.log(data);
-        }
-    })
-}
+export const useLoginMutation = () => {
+  return useMutation({
+    mutationFn: (userData: ILogin) => api.post('/auth/login', userData),
+    onSuccess: ({ data }) => {
+      if (data && data.access) {
+        localStorage.setItem('access_token', data.access)
+        localStorage.setItem('refresh_token', data.refresh)
+      }
+    }
+  });
+};
 
-export const useCurrentUser = ()=>{
-    const accessToken = localStorage.getItem('access_token')
-    return useQuery({
-        queryKey: ['current'],
-        queryFn: ()=> api.get('/auth/users/profile'),
-        enabled: !!accessToken,
-        select: (data)=> data.data
-    })
-}
+export const useCurrentUser = () => {
+  const access_token = localStorage.getItem('access_token')
+  return useQuery({
+    queryKey: ['current'],
+    queryFn: () => api.get('/auth/users/profile'),
+    enabled: !!access_token,
+    select: (response) => response.data
+  })
+};
 
-export const useProfileInfoMutation = ()=>{
-    return useMutation({
-        mutationFn: (useData: IProfileInfo)=> {
-            const {id, username, email, password} = useData;
-            return api.put(`/auth/users/${id}/update`, {username, email, password})
-        }
-    })
-}
 
-export const useProfileAvatarMutation = ()=>{
-    return useMutation({
-        mutationFn: (useData: IProfileAvatar)=> {
-            const {id, avatar} = useData;
-            return api.put(`/auth/users/${id}/update/avatar`, avatar)
-        }
-    })
-}
+export const useProfileInfoMutation = () => {
+  return useMutation({
+    mutationFn: (userData: IProfileInfo) => {
+      const {id, username, password, email} = userData;
+      return api.put(`/auth/users/${id}/update`, {username, password, email})
+    }
+  });
+};
+
+export const useProfileAvatarMutation = () => {
+  return useMutation({
+    mutationFn: (userData: IProfileAvatar) => {
+      const {id, avatar} = userData;
+      return api.put(`/auth/users/${id}/update/avatar`, avatar)
+    }
+  });
+};

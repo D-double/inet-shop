@@ -1,6 +1,5 @@
-import React from 'react'
-import UserLayout from '../layouts/UserLayout'
-import PerProduct from '../components/PerProduct/PerProduct'
+import PerProduct from "../components/PerProduct/PerProduct"
+import UserLayout from "../layouts/UserLayout"
 
 const MenuProduct = () => {
   return (

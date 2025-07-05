@@ -1,42 +1,42 @@
-import React, { FC } from 'react'
-import s from './cartBlock.module.scss'
-import { closeIcon, productImg } from '../../utils'
+import { closeIcon} from '../../utils';
+import s from './CartBlock.module.scss';
+import { FC } from 'react';
 import cartStore, { ICartProduct } from '../../store/cartStore';
 import { IProduct } from '../../types';
 import { toast } from 'react-toastify';
 
-const CartItem: FC<ICartProduct> = ({title, price, image, amount, id}) => {
-  const { addToCart, minusCart, delCart } = cartStore();
-  const removeItem =()=>{
-    delCart(id)
-    toast.error('Товар удален из корзины!', {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
+const CartItem: FC<ICartProduct> = ({id, image, price, title, amount}) => {
+const { addToCart, minusItem, removeItem } = cartStore()
+const remove = () => {
+  removeItem(id)
+  toast.success('Товар удален из корзины', {
+    position: "top-right",
+    autoClose: 2000, // Закрытие уведомления через 3 секунды
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
   });
-  }
-  
+}
   return (
-    <div className={s.cart__item}>
-        <div className={s.cart__info}>
-            <img src={image} alt="" className={s.cart__img} />
-            <h2 className={s.cart__name}>{title}</h2>
-            <p className={s.cart__price}>{+price * amount} ₽</p>
-        </div>
-        <div className={s.cart__controls}>
-            <button onClick={()=>{minusCart(id)}} className={s.cart__minus}>–</button>
-            <span className={s.cart__amount}>{amount}</span>
-            <button onClick={()=>{addToCart({id} as IProduct)}} className={s.cart__plus}>+</button>
-            <button onClick={removeItem} className={s.cart__del}>
-                <img src={closeIcon} alt="" />
-            </button>
-        </div>
-    </div>
+<div className={s.cart__item}>
+  <div className={s.cart__info}>
+    <img src={image} alt="" className={s.cart__img} />
+    <h2 className={s.cart__name}>{title}</h2>
+    <p className={s.cart__price}>{price} ₽</p>
+  </div>
+  <div className={s.cart__controls}>
+    <button className={s.cart__minus} onClick={() => minusItem(id)}>-</button>
+    <span className={s.cart__amount}>{amount}</span>
+<button className={s.cart__plus} onClick={()=>{addToCart({id} as IProduct)}}>
+  +
+</button>
+<button className={s.cart__del} onClick={() => remove()}>
+  <img src={closeIcon} alt="" />
+</button>
+  </div>
+</div>
   )
 }
 

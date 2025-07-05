@@ -1,23 +1,22 @@
-import React from 'react'
 import ContentLoader from "react-content-loader"
 
 const UserSceleton = () => {
   return (
-    <ContentLoader 
-    speed={2}
-    width={240}
-    height={400}
-    viewBox="0 0 240 400"
-    backgroundColor="#c3c3c3"
-    foregroundColor="#ecebeb"
-  >
-    <circle cx="75" cy="75" r="45" /> 
-    <rect x="30" y="141" rx="5" ry="5" width="161" height="20" /> 
-    <rect x="30" y="173" rx="5" ry="5" width="106" height="20" /> 
-    <rect x="30" y="233" rx="5" ry="5" width="109" height="23" /> 
-    <rect x="30" y="292" rx="5" ry="5" width="109" height="23" /> 
-    <rect x="30" y="349" rx="5" ry="5" width="109" height="23" /> 
-  </ContentLoader>
+    <ContentLoader
+      speed={2}
+      width={315}
+      height={400}
+      viewBox="0 0 400 460"
+      backgroundColor="#c7c7c7"
+      foregroundColor="#ecebeb"
+    >
+      <circle cx="44" cy="44" r="44" />
+      <rect x="0" y="141" rx="0" ry="0" width="185" height="27" />
+      <rect x="0" y="175" rx="0" ry="0" width="106" height="19" />
+      <rect x="0" y="234" rx="0" ry="0" width="84" height="24" />
+      <rect x="0" y="292" rx="0" ry="0" width="103" height="24" />
+      <rect x="0" y="349" rx="0" ry="0" width="109" height="24" />
+    </ContentLoader>
   )
 }
 

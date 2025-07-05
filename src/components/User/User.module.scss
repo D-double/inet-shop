@@ -1,62 +1,62 @@
 .user {
-    border-right: 1px solid #D4D6E0;
-    width: 22%;
-    padding: 30px 30px 53px 30px;
+  width: 20%;
+  border-right: 1px solid rgb(212, 214, 224);
+  padding: 30px 30px 50px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: auto;
+
+  &__img {
+    object-fit: cover;
+    width: 90px;
+    height: 90px;
+    box-shadow: 0 8px 40px 0 rgba(255, 197, 41, 0.25);
+    border-radius: 50%;
+  }
+
+  &__name {
+    margin-top: 21px;
+    margin-bottom: 7px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+  }
+
+  &__email {
+    color: #9EA1B1;
+    font-size: 14px;
+  }
+
+  &__menu {
     display: flex;
     flex-direction: column;
-    gap: 46px;
-    position: sticky;
-    top: 0;
-    height: 100dvh;
-    overflow: auto;
+    gap: 35px;
+  }
 
-    &::-webkit-scrollbar {
-        width: 6px;
-    }
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: rgb(0, 0, 0);
 
-    &::-webkit-scrollbar-thumb {
-        background: #FE724C;
+    img {
+      width: 23px;
+      height: 23px;
     }
+  }
 
-    &__img {
-        width: 90px;
-        height: 90px;
-        object-fit: cover;
-        border-radius: 50%;
-        box-shadow: 0 8px 40px 0 rgba(255, 197, 41, 0.25);
-        margin-bottom: 21px;
-    }
-
-    &__name {
-        font-size: 20px;
-    }
-
-    &__email {
-        color: #9EA1B1;
-        font-size: 14px;
-    }
-
-    &__menu {
-        display: flex;
-        flex-direction: column;
-        gap: 34px;
-    }
-
-    &__link {
-        display: flex;
-        gap: 14px;
-        align-items: center;
-    }
-
-    &__cart {
-        font-size: 12px;
-        color: #fff;
-        background: #FE724C;
-        border-radius: 50%;
-        width: 25px;
-        height: 25px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  &__count {
+    background: #FE724C;
+    color: #fff;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

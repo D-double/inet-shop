@@ -1,6 +1,5 @@
-import React from 'react'
+import ProfileBlock from '../components/Profile/ProfileBlock'
 import AuthLayout from '../layouts/AuthLayout'
-import ProfileBlock from '../components/ProfileBlock/ProfileBlock'
 
 const Profile = () => {
   return (

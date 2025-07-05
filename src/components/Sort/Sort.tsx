@@ -1,26 +1,29 @@
-import React, { useState } from 'react'
-import Select from 'react-select';
+import { useState } from 'react';
+import Select from 'react-select'
 import filterStore from '../../store/filterStore';
 
+const options = [
+  { value: '', label: 'товары' },
+  { value: 'price', label: 'Цене' },
+  { value: 'rating', label: 'Рейтингу' },
+  { value: 'title', label: 'Названию' }
+];
+
 const Sort = () => {
-  const {setSortValue} = filterStore((state)=> state)
-  const options = [
-    { value: 'price', label: 'Цене' },
-    { value: 'rating', label: 'Рейтингу' },
-    { value: 'title', label: 'Названию' },
-  ];
   const [selectedOption, setSelectedOption] = useState(null);
-  const changeOption = (option)=> {
+  const { setSortValue } = filterStore(state => state)
+  const changeOption = (option)=>{
     setSelectedOption(option)
-    setSortValue(option.value);
+    setSortValue(option.value)
+    // console.log(option);
   }
   return (
-    <Select 
-      value={selectedOption}
-      placeholder='Сортировать по:'
-      options={options}
-      onChange={changeOption}
-    />
+  <Select
+    placeholder='Сортировать по:'
+    options={options}
+    value={selectedOption}
+    onChange={changeOption}
+  />
   )
 }
 

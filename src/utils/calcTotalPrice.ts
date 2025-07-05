@@ -1,9 +1,8 @@
-import { ICartProduct } from "../store/cartStore";
-
-function calcTotalPrice(carts: ICartProduct[]): number {
-    return carts.reduce((acc, elem)=>{
-        return acc + elem.amount * +elem.price
-    }, 0)
+import { ICartProduct } from "../store/cartStore"
+const calcTotalPrice = (carts: ICartProduct[]): number => {
+  return carts.reduce((sum, obj) => {
+    return +obj.price * obj.amount! + sum
+  }, 0)
 }
 
 export default calcTotalPrice

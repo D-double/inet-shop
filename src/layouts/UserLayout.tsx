@@ -1,24 +1,24 @@
 import React, { FC, ReactNode, useEffect } from 'react'
 import User from '../components/User/User'
-import cartStore from '../store/cartStore';
+import cartStore from '../store/cartStore'
 
-interface IUserLayout {
-    children: ReactNode
+interface IUserLayoutProps {
+  children: ReactNode
 }
 
-const UserLayout: FC<IUserLayout> = ({children}) => {
+const UserLayout: FC<IUserLayoutProps> = ({children}) => {
   const {cart} = cartStore();
   useEffect(()=>{
-    const json = JSON.stringify(cart)
+    const json = JSON.stringify(cart);
     localStorage.setItem('cart', json)
   }, [cart])
   return (
-    <div className='wrapper'>
-        <User/>
-        <div className="container">
-            {children}
-        </div>
-    </div>
+<div className='wrapper'>
+  <User/>
+  <div className="container">
+    {children}
+  </div>
+</div>
   )
 }
 

@@ -5,7 +5,5 @@ export const Paths = {
     cart: '/cart',
     profile: '/profile',
     menuProduct: '/product/:id',
-    product: '/product/'
+    product: '/product',
 } as const
-
-
