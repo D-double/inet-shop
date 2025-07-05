@@ -1,5 +1,5 @@
 import { closeIcon} from '../../utils';
-import s from './CartBlock.module.scss';
+import s from './cartBlock.module.scss';
 import { FC } from 'react';
 import cartStore, { ICartProduct } from '../../store/cartStore';
 import { IProduct } from '../../types';

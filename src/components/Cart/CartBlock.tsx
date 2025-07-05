@@ -1,4 +1,4 @@
-import s from './CartBlock.module.scss';
+import s from './cartBlock.module.scss';
 import CartItem from './CartItem';
 import cartStore from '../../store/cartStore';
 
