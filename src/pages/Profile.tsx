@@ -1,5 +1,5 @@
-import ProfileBlock from '../components/Profile/ProfileBlock'
 import AuthLayout from '../layouts/AuthLayout'
+import ProfileBlock from '../components/Profile/ProfileBlock'
 
 const Profile = () => {
   return (

@@ -1,0 +1,121 @@
+.single {
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 34px;
+        gap: 36px;
+
+        @media (width < 500px) {
+            flex-wrap: wrap;
+
+            h1 {
+                order: 1;
+            }
+        }
+    }
+
+    &__link {
+        box-shadow: 5px 10px 20px 0 rgba(211, 209, 216, 0.3);
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+    }
+
+    &__cart {
+        margin-left: auto;
+        padding: 14px !important;
+        gap: 14px;
+
+        @media (width < 768px) {
+            width: max-content !important;
+
+            span {
+                display: none;
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        align-items: flex-start;
+        gap: 48px;
+
+        @media (width < 768px) {
+            flex-direction: column;
+        }
+    }
+
+    &__img {
+        max-width: 323px;
+        width: 100%;
+        border-radius: 18px;
+    }
+
+    &__card {
+        display: grid;
+        grid-template-columns: 150px max-content;
+        padding-bottom: 8px;
+        position: relative;
+        margin-bottom: 17px;
+        align-items: center;
+
+        @media (width < 400px) {
+            grid-template-columns: max-content;
+            gap: 10px;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            height: 1px;
+            background: #F1F2F3;
+            max-width: 201px;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        &:last-of-type::after {
+            display: none;
+        }
+
+        h3 {
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        p {
+            font-size: 19px;
+        }
+
+        span {
+            font-size: 14px;
+            color: #9796a1;
+        }
+    }
+
+    &__rating {
+        box-shadow: 0 6px 24px 0 rgba(254, 114, 76, 0.2);
+        padding: 6px 9px;
+        font-weight: 600;
+        font-size: 12px;
+        border-radius: 136px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    &__desc {
+        font-weight: 600;
+        font-size: 14px;
+        color: #5b5b5e;
+        max-width: 350px;
+        width: 100%;
+    }
+}

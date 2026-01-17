@@ -1,28 +1,44 @@
-import React, { FC } from 'react'
+import { useEffect, useState, type FC } from 'react';
 import ReactPaginate from 'react-paginate';
-import s from './Pagination.module.scss'
+import s from './pagination.module.scss'
+import type { ISelectedItem } from '../../types';
 
 interface IPaginationProps {
-  totalCount: number;
-  сhangePage: (num: number)=>void,
-  currentPage: number,
-  limit: number
+    totalCount: number,
+    changePage: (page: ISelectedItem)=> void,
+    currentPage: number,
+    limit: number
 }
 
-const Pagination: FC<IPaginationProps> = ({totalCount, сhangePage, currentPage, limit}) => {
-  const total = Math.ceil(totalCount / limit)
+const Pagination: FC<IPaginationProps> = ({totalCount, changePage, currentPage, limit}) => {
+  const [pageRange, setPageRange] = useState(3)
+  const [marginPages, setMarginPages] = useState(1)
+  const totalPage = Math.ceil(totalCount / limit);
+  const resizePaginate = ()=>{
+    if(window.innerWidth < 500) {
+      setPageRange(0);
+      setMarginPages(0);
+    } else {
+      setPageRange(3);
+      setMarginPages(1);
+    }    
+  }
+  window.addEventListener('resize', resizePaginate)
+  useEffect(resizePaginate, [currentPage])
   return (
-<ReactPaginate
-  className={s.pagination}
-  activeClassName={s.active}
-  breakLabel="..."
-  nextLabel=">"
-  onPageChange={(page)=>{сhangePage(page.selected + 1)}}
-  pageRangeDisplayed={3}
-  pageCount={total}
-  previousLabel="<"
-  forcePage={currentPage - 1}
-/>
+    <ReactPaginate
+        breakLabel="..."
+        nextLabel=">"
+        onPageChange={changePage}
+        pageRangeDisplayed={pageRange} // 0
+        marginPagesDisplayed={marginPages} // 0
+        pageCount={totalPage}
+        previousLabel="<"
+        className={s.pagination}
+        activeLinkClassName={s.active}
+        forcePage={currentPage}
+
+      />
   )
 }
 

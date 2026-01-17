@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
-import { Paths } from '../routes/paths'
+import { useEffect } from "react"
+import { Outlet, useNavigate } from "react-router";
+import { Paths } from "../routes/paths";
 
 const PublicRoute = () => {
-    const access_token = localStorage.getItem('access_token')
+    const accessToken = localStorage.getItem('access');
     const navigate = useNavigate()
-
-    useEffect(() => {
-        if (access_token) {
+    useEffect(()=>{
+        if(accessToken){
             navigate(Paths.menu)
         }
-    }, [access_token])
+    }, [accessToken])
 
-    return <Outlet />
+  return (
+    <Outlet/>
+  )
 }
 
 export default PublicRoute

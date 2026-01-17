@@ -1,24 +1,18 @@
-import s from './CustomBtn.module.scss'
-import { FC } from 'react';
+import type { FC } from "react";
 
 interface ICustomBtnProps {
   text: string;
   icon?: string;
   width: number;
-  height: number;
   mt?: string;
+  className?: string;
   disabled?: boolean;
-  m?: string;
-  onClick?: ()=>void;
+  onClick?: ()=>void;  
 }
 
-const CustomBtn:FC<ICustomBtnProps> = ({text, icon, width, height, mt, disabled, m, onClick}) => {
+const CustomBtn: FC<ICustomBtnProps>  = ({text, icon, width, mt, className, disabled, onClick}) => {
   return (
-    <button 
-        onClick={onClick}
-        disabled={disabled} 
-        className={s.btn} 
-        style={{width: width, height: height, marginTop: mt, marginLeft: m, marginRight: m}}>
+    <button onClick={onClick} disabled={disabled} className={`btn ${className}`} style={{width, marginTop: mt}}>
       {icon && <img src={icon} alt="" />}
       <span>{text}</span>
     </button>

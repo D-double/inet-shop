@@ -1,14 +1,17 @@
 .pagination {
-  display: flex;
-  gap: 10px;
-  padding: 20px 0;
+    display: flex;
+    gap: 10px;
+    margin: 30px 0;
 
-  a {
-    cursor: pointer;
-    padding: 0 10px;
-  }
+    a {
+        display: inline-block;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
 
-  .active {
-    color: red;
-  }
+    .active {
+        background: #FE724C;
+        color: #fff;
+    }
 }

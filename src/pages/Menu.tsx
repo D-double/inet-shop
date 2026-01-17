@@ -1,5 +1,5 @@
-import Products from "../components/Products/Products"
-import UserLayout from "../layouts/UserLayout"
+import UserLayout from '../layouts/UserLayout'
+import Products from '../components/Products/Products'
 
 const Menu = () => {
   return (

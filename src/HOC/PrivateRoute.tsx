@@ -1,27 +1,26 @@
-import React, { useEffect } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
-import { useCurrentUser } from '../services/user'
-import userStore from '../store/userStore'
-import { Paths } from '../routes/paths'
+import { useEffect } from "react"
+import { Outlet, useNavigate } from "react-router";
+import { Paths } from "../routes/paths";
+import { useCurrentUser } from "../services/user";
+import { userStore } from "../store/userStore";
 
 const PrivateRoute = () => {
-  const {setUser} = userStore();
-  const access_token = localStorage.getItem('access_token')
-  const navigate = useNavigate()
-  const {data} = useCurrentUser();
-  
-  useEffect(() => {
-    if(!access_token) {
-      navigate(Paths.login)
-    }
-  }, [access_token])
+    const { setUser } = userStore();
+    const accessToken = localStorage.getItem('access');
+    const navigate = useNavigate()
+    useEffect(()=>{
+        if(!accessToken){
+            navigate(Paths.login)
+        }
+    }, [accessToken])
 
-  useEffect(()=>{
-    if(data){
-      setUser(data)
-    }
-  }, [data])
-  return <Outlet/>
+    const {data} = useCurrentUser()
+    useEffect(()=>{
+        setUser(data)
+    }, [data])
+  return (
+    <Outlet/>
+  )
 }
 
 export default PrivateRoute

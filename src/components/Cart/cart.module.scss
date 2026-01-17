@@ -1,0 +1,115 @@
+.cart {
+    max-width: 526px;
+    width: 100%;
+
+    &__list {
+        margin-top: 37px;
+        display: flex;
+        flex-direction: column;
+        gap: 27px;
+        margin-bottom: 50px;
+
+        @media (width < 768px) {
+            gap: 40px;
+        }
+    }
+
+    &__total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 18px 8px 0;
+        border-bottom: 1px solid #f1f2f3;
+
+        div {
+            font-size: 19px;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        span {
+            font-size: 14px;
+            color: #9796a1;
+        }
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+
+        @media (width < 768px) {
+            flex-direction: column;
+        }
+    }
+
+    &__info {
+        display: grid;
+        grid-template-columns: repeat(2, max-content);
+        gap: 0 21px;
+
+        @media (width < 600px) {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+    }
+
+    &__img {
+        box-shadow: 0 8px 25px 0 rgba(224, 219, 196, 0.9);
+        width: 82px;
+        height: 82px;
+        border-radius: 20px;
+        object-fit: cover;
+        grid-row: span 2;
+
+        @media (width < 600px) {
+            width: 200px;
+        }
+
+        @media (width < 400px) {
+            width: 100px;
+        }
+    }
+
+    &__name {
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    &__price {
+        font-weight: 600;
+        color: #fe724c;
+    }
+
+    &__minus, &__plus {
+        box-shadow: 0 20px 30px 0 #eef0f2;
+        border: 1px solid #fe724c;
+        border-radius: 17px;
+        width: 28px;
+        height: 28px;
+        color: #fe724c;
+    }
+
+    &__plus {
+        color: #fff;
+        box-shadow: 0 7px 15px 0 rgba(254, 114, 76, 0.4);
+        background: #fe724c;
+    }
+
+    &__controls {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+    }
+
+    &__count {
+        font-weight: 600;
+    }
+
+    &__del {
+        margin-left: 10px;
+        display: flex;
+    }
+}

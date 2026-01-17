@@ -1,30 +1,26 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
-interface IFilterStore {
-  sortValue: string;
-  setSortValue: (value: string) => void;
-  searchValue: string;
-  setSearchValue: (value: string) => void;
-  currentPage: number;
-  setCurrentPage:(value:number) => void
-  limit: number;
-  skip: number;
-  setSkip: (value: number) => void
+type Store = {
+  sortVal: string
+  setSortVal: (sort: string) => void  
+  searchVal: string
+  setSearchVal: (search: string) => void 
+  currentPage: number
+  setCurrentPage: (val: number)=> void,
+  limit: number,
+  offset: number,
+  setOffset: (val: number)=> void
 }
 
-const filterStore = create<IFilterStore>()(devtools(
-(set) => ({
-  sortValue: '',
-  setSortValue: (value) => set({ sortValue: value }),
-  searchValue: '',
-  setSearchValue: (value) => set({ searchValue: value }),
-  currentPage: 1,
-  setCurrentPage: (value) => set({ currentPage: value }),
+export const filterStore = create<Store>()(devtools( (set) => ({
+  sortVal: '',
+  setSortVal: (sort) => set({ sortVal: sort }),
+  searchVal: '',
+  setSearchVal: (search)=> set({searchVal: search}),
+  currentPage: 0,
+  setCurrentPage: (val)=> set({currentPage: val}),
   limit: 6,
-  skip: 0,
-  setSkip: (value:number) => set({skip: value})
-})
-))
-
-export default filterStore
+  offset: 0,
+  setOffset: (val)=> set({offset: val})
+})))

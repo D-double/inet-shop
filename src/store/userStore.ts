@@ -1,27 +1,15 @@
 import { create } from 'zustand'
+import type { IUser } from '../types'
 import { devtools } from 'zustand/middleware'
 
-interface IUser {
-  id: string;
-  email: string;
-  avatar?: string | ArrayBuffer | null;
-  username: string
+type Store = {
+  user: null | IUser
+  setUser: (user: IUser) => void
+  logout: ()=>void
 }
 
-interface IUserStore {
-  user: null | IUser,
-  isAuth: boolean,
-  setUser: (data: IUser) => void,
-  logout: () => void
-}
-
-const userStore = create<IUserStore>()(devtools(
-  (set) => ({
-    user: null,
-    isAuth: false,
-    setUser: (data) => set({ user: data, isAuth: true }),
-    logout: () => set({ user: null, isAuth: false })
-  })
-))
-
-export default userStore
+export const userStore = create<Store>()(devtools( (set) => ({
+  user: null,
+  setUser: (user) => set({ user: user }),
+  logout: () => set({ user: null }),
+})))

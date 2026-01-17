@@ -1,64 +1,71 @@
-import React from 'react'
-import s from './User.module.scss';
-import { userPhoto, menuIcon, cartIcon, userIcon, logoutIcon } from '../../utils';
-import { NavLink, useNavigate } from 'react-router-dom';
-import CustomBtn from '../UI/CustomBtn';
-import userStore from '../../store/userStore';
-import UserSceleton from './UserSceleton';
-import cartStore from '../../store/cartStore';
-import { Paths } from '../../routes/paths';
-const links = [
-  { url: Paths.menu, name: 'Меню', icon: menuIcon },
-  { url: Paths.cart, name: 'Корзина', icon: cartIcon },
-  { url: Paths.profile, name: 'Профиль', icon: userIcon },
+import { NavLink } from 'react-router'
+import { Paths } from '../../routes/paths'
+import { cartIcon, logoutIcon, menuIcon, userIcon, userPhoto } from '../../utils'
+import s from './user.module.scss'
+import CustomBtn from '../UI/CustomBtn'
+import { userStore } from '../../store/userStore'
+import UserSkeleton from './UserSkeleton'
+import { cartStore } from '../../store/cartStore'
+
+const menu = [
+    {url: Paths.menu, name: 'Меню', icon: menuIcon},
+    {url: Paths.cart, name: 'Корзина', icon: cartIcon},
+    {url: Paths.profile, name: 'Профиль', icon: userIcon},
 ]
 
 const User = () => {
-  const { logout, user } = userStore();
-  const { cart } = cartStore();
-  const totalCount = cart.reduce((acc, val) => {
-    return acc + val.amount
-  }, 0)
-  console.log(totalCount);
-  const navigate = useNavigate()
-  const logoutUser = () => {
-    logout()
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('refresh_token')
-    navigate(Paths.login)
-  }
-  const userImg = user?.avatar ? import.meta.env.VITE_IMG_URL + user.avatar : userPhoto;
+    const {logout, user} = userStore()
+    const {cart} = cartStore()
+    const totalCount = cart.reduce((acc, elem)=>{
+        return acc + elem.count
+    }, 0)
+    const logoutUser = ()=>{
+        logout()
+        localStorage.removeItem('access')
+        localStorage.removeItem('refresh')
+    }
+
+    const userImg = user?.avatar ? import.meta.env.VITE_IMG_URL + user.avatar : userPhoto;
   return (
     <div className={s.user}>
-      {
-        user ? (
-          <>
-            <div className={s.user__info}>
-              <img src={userImg} alt="" className={s.user__img} />
-              <h2 className={s.user__name}>{user.username}</h2>
-              <a href="" className={s.user__email}>{user.email}</a>
-            </div>
-            <ul className={s.user__menu}>
-              {links.map((link) => (
-                <li key={link.url}>
-                  <NavLink to={link.url} className={s.user__link}>
-                    <img src={link.icon} alt="" />
-                    {link.name}
-                    {totalCount && link.url == Paths.cart && <span className={s.user__count}>{totalCount}</span>}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-            <CustomBtn
-              text="Выйти"
-              icon={logoutIcon}
-              width={117}
-              height={43}
-              mt='auto'
-              onClick={logoutUser}
-            />
-          </>
-        ) : <UserSceleton />}
+        {
+            user ? (          
+                <>
+                    <div className={s.user__info}>
+                        <img src={userImg} alt="" className={s.user__img} />
+                        <h2 className={s.user__name}>{user.username}</h2>
+                        <p className={s.user__email}>{user.email}</p>
+                    </div>
+                    <ul className={s.user__menu}>
+                        {
+                            menu.map((elem)=>(
+                                <li key={elem.url}>
+                                    <NavLink className={s.user__link} to={elem.url}>
+                                        <img src={elem.icon} alt="" />
+                                        <span className={s.user__text}>
+                                            {elem.name}
+                                        </span>
+                                        {
+                                            elem.url == Paths.cart && totalCount ? 
+                                            <span className={s.user__count}>{totalCount}</span> : ''
+                                        }
+                                    </NavLink>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </>
+            ) : 
+            <UserSkeleton/>
+        }
+        <CustomBtn
+            text='Выйти'
+            icon={logoutIcon}
+            width={117}
+            mt='auto'
+            onClick={logoutUser}
+            className={s.user__btn}
+        />
     </div>
   )
 }

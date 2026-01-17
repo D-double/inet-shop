@@ -1,19 +1,21 @@
-import { FC, ReactNode } from 'react'
-import { images } from '../assets/image.ts'
-interface AuthLayoutProps {
-  children: ReactNode
+import type { FC, ReactNode } from "react"
+import { logoIcon } from "../utils"
+
+interface IAuthLayoutProps {
+    children: ReactNode
 }
-const AuthLayout:FC<AuthLayoutProps> = ({children}) => {
-return (
-  <div className='wrapper'>
-    <div className="wrapper__logo">
-      <img src={images.logo} alt="" className="wrapper__img" />
+
+const AuthLayout: FC<IAuthLayoutProps> = ({children}) => {
+  return (
+    <div className="wrapper">
+        <div className="wrapper__logo">
+            <img src={logoIcon} alt="" />
+        </div>
+        <div className="wrapper__form">
+            {children}
+        </div>
     </div>
-    <div className="wrapper__form">
-      {children}
-    </div>
-  </div>
-)
+  )
 }
 
 export default AuthLayout

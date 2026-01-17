@@ -1,39 +1,44 @@
-import { FC } from 'react'
-import { UseFormRegisterReturn, FieldError, Merge, FieldErrorsImpl } from 'react-hook-form'
-import { avatarImg } from '../../utils'
+import type { FC } from "react";
+import type { FieldError, FieldErrorsImpl, Merge, UseFormRegisterReturn } from "react-hook-form";
+import { editIcon } from "../../utils";
 
-interface CustomInputProps {
-  register: UseFormRegisterReturn,
-  errors: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined,
-  label: string
-  type: string
-  holder: string
+interface ICustomInputProps {
+    register: UseFormRegisterReturn;
+    errors: FieldError | Merge<FieldError, FieldErrorsImpl> | undefined
+    label: string
+    type: string
+    holder: string
 }
 
-const CustomInput: FC<CustomInputProps> = ({ register, errors, label, type, holder }) => {
+const CustomInput: FC<ICustomInputProps> = ({register, errors, label, type, holder}) => {
   return (
     <div className="enter__item">
-      <label>
-        <span className="enter__text">{label}</span>
+      <label className={type == 'file' ? 'enter__label' : ''}>
+        <span>{label}</span>
         {
-          type != 'file' ?
+          type != 'file' ? 
           <input
-          {...register}
-          type={type} className="enter__input" placeholder={holder}
+            {...register}
+            className="enter__input"
+            type={type}
+            placeholder={holder}
           /> :
           <span>
-            <img src={avatarImg} alt="" />
+            <img src={editIcon} alt="" />
             <input
             {...register}
-            type={type} className="enter__file" placeholder={holder}
-            /> 
+            className="enter__file"
+            type={type}
+            placeholder={holder}
+          />
           </span>
-          
         }
       </label>
-      <p className="enter__error">{errors && <>{errors.message}</>}</p>
+      <p className="enter__error">
+        {errors ? <>{errors.message}</> : ""}
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default CustomInput
+export default CustomInput;

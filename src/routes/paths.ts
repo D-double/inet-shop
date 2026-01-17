@@ -4,6 +4,6 @@ export const Paths = {
     register: '/register',
     cart: '/cart',
     profile: '/profile',
-    menuProduct: '/product/:id',
-    product: '/product',
+    notFound: '*',
+    singleProduct: '/product/:id'
 } as const
